@@ -28,7 +28,7 @@ class QRCodeController extends Controller
         }
 
         return view('qrcode.validated-qrcode', [
-            'user' => $user,
+            'user' => $user->load('company'),
             'content' => 'successfully'
         ]);
     }

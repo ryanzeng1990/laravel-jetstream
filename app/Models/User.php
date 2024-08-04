@@ -29,6 +29,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'qrcode_string',
+        'qrcode_expired_date',
+        'current_team_id',
+        'qrcode_view',
     ];
 
     protected $casts = [
@@ -65,6 +69,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'qrcode_view' => 'integer',
         ];
     }
 

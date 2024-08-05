@@ -28,7 +28,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'mobile',
         'password',
+        'company_id',
         'qrcode_string',
         'qrcode_expired_date',
         'current_team_id',

@@ -20,6 +20,20 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="mobile" value="Mobile" />
+                <x-input id="mobile" class="block mt-1 w-full" type="text" name="mobile" :value="old('mobile')" required autocomplete="username" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="password" value="Company" />
+                <select name="company_id" id="company_id" class="block mt-1 w-full">
+                    @foreach (\App\Models\Company::get() as $company)
+                        <option value={{$company->id}}>{{ $company->zh_name }} - {{ $company->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>

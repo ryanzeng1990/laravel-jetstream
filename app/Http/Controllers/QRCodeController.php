@@ -19,16 +19,18 @@ class QRCodeController extends Controller
             || empty($payload['secret'])
             || !$user
         ) {
-            return response()->json([], 404);
+            return view('404');
         }
 
         $isValid = (new ValidateCrmQrCode())->execute($user, $payload);
         if (!$isValid) {
-            return response()->json([], 404);
+            return view('404');
         }
 
+        $user->update(['qrcode_view' => ($user->qrcode_view + 1)]);
+
         return view('qrcode.validated-qrcode', [
-            'user' => $user,
+            'user' => $user->load('company'),
             'content' => 'successfully'
         ]);
     }

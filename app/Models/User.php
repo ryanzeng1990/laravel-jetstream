@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Actions\CRM\GetCrmQrcode;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -28,6 +29,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'qrcode_string',
+        'qrcode_expired_date',
+        'current_team_id',
+        'qrcode_view',
     ];
 
     protected $casts = [
@@ -64,11 +69,17 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'qrcode_view' => 'integer',
         ];
     }
 
     public function getCrmQrCode(): string
     {
         return app(GetCrmQrcode::class)->execute();
+    }
+
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class);
     }
 }

@@ -4,7 +4,7 @@ use App\Http\Controllers\QRCodeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 Route::middleware([
@@ -16,11 +16,11 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/qrcode', function () {
-        return view('qrcode.index', [
-            'user' => auth()->user()
-        ]);
-    })->name('qrcode');
+//    Route::get('/qrcode', function () {
+//        return view('qrcode.index', [
+//            'user' => auth()->user()
+//        ]);
+//    })->name('qrcode');
 });
 
 Route::get('/validate-qrcode', [QRCodeController::class,'validate'])->name('qrcode.validate');

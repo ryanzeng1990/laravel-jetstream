@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->string('qrcode_string')->nullable();
             $table->date('qrcode_expired_date')->nullable();
+            $table->integer('qrcode_view')->default(0);
             $table->timestamps();
         });
 
